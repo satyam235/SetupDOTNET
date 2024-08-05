@@ -47,5 +47,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
+        automatic_release_tag: windows
+        title: build
         name: msi
         path: SecopSolutions\bin\x86\Release\en-US\SecopSolutions.msi # Specify the path to your generated MSI file
