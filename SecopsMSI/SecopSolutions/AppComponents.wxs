@@ -1,0 +1,50 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="AppComponents" Directory="INSTALLFOLDER">
+		<Component Guid="*" >
+			<File Id="service" Source="Files\SecopsService.exe" />
+			<ServiceInstall Id="service" Name="SecopsService" Arguments="-start" Start="auto" Type="ownProcess" Vital="yes" ErrorControl="normal" />
+			<ServiceControl Id="service" Name="SecopsService" Stop="both" Start="install" Remove="uninstall" Wait="no" />
+		</Component>
+		<Component Guid="*" >
+			<File Source="Files\secops_config.txt" />
+		</Component>
+		<Component Guid="*" >
+			<File Source="Files\uninstall-service.bat" />
+		</Component>
+		<Component Guid="*">
+			<File Source="Files\secops_windows_updater.exe" />
+		</Component>
+		<Component Guid="*" >
+			<File Source="Files\secops_uninstaller.exe" Name="secops_uninstaller.exe" />
+			<RemoveFile Id="RemoveUninstallerFile" On="uninstall" Name="secops_uninstaller.exe" />
+		</Component>
+		<Component Guid="*" >
+			<File Source="Files\secops_server.exe" />
+		</Component>
+		<Component Guid="*" >
+			<File Id="DesktopFile" Source="Files\secops_cli_windows-latest.exe" >
+			</File>
+		</Component >
+		<Component Guid="*" Id="DesktopShortcut" Condition="INSTALLDESKTOPSHORTCUT">
+			<CreateFolder/>
+			<RegistryKey Root="HKCU" Key="Software\Secops Solutions, Inc\Agent
+\Install" >
+				<RegistryValue Name="DTSC" Value="1" Type="integer"/>
+			</RegistryKey>
+			<Shortcut Id="DesktopShortcut" Directory="DesktopFolder"
+			Name="Secops Solution CLI"
+			Icon="icon" Target="[#DesktopFile]"/>
+		</Component>
+		<Component Guid="*" >
+			<File Source="Files\install-service.bat" />
+		</Component>
+		<Component Guid="*" >
+			<RegistryValue Root="HKLM" Key="Software\Classes\.exe\OpenWithProgids" Name="SecopsSolutionCLI.exe" Value="" />
+<!--			<RegistryValue Root="HKLM" Key="Software\Classes\SecopsSolutionCLI.exe" Name="" Value="Secops Solution CLI" />
+			<RegistryValue Root="HKLM" Key="Software\Classes\SecopsSolutionCLI.exe\DefaultIcon" Name="" Value="[INSTALLFOLDER]\secops_cli_windows-latest.exe" />-->
+			<RegistryValue Root="HKLM" Key="Software\Classes\Applications\secops_cli_windows-latest.exe\SupportedTypes" Name=".myp" Value="" />
+ 		</Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

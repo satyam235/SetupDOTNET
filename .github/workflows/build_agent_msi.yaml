@@ -1,0 +1,45 @@
+name: Build MSI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install .NET Framework 4.7.2
+      run: |
+        choco install netfx-4.7.2-devpack -y
+      continue-on-error: true  # Continue even if installation fails (since the runner might already have it installed)
+
+    - name: Download dotnet-install script
+      run: Invoke-WebRequest -Uri https://dot.net/v1/dotnet-install.ps1 -OutFile dotnet-install.ps1
+
+    - name: Install .NET SDK 8.0.1xx
+      run: ./dotnet-install.ps1 -Channel 8.0.1xx
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x' # This ensures the correct SDK is used
+
+    - name: Restore dependencies
+      run: dotnet restore "SecopSolutions\SecopSolutions.sln"
+
+    - name: Build solution
+      run: dotnet msbuild "SecopSolutions\SecopSolutions.sln" -t:Rebuild -p:Platform=x86 -p:Configuration=Release
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: msi
+        path: path\to\your\msi\file.msi # Specify the path to your generated MSI file

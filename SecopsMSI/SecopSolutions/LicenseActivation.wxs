@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+		<Binary Id="VerifyLicenseBin"
+				SourceFile="..\VerifyLicenseKey\bin\Release\net472\VerifyLicenseKey.CA.dll" />
+		<CustomAction Id ="VerifyLicenseAct" BinaryRef="VerifyLicenseBin" DllEntry="ActionVerifyLicenseKey" Execute="immediate" Return="ignore" />
+		<Binary Id="RegisterAgentBin" 
+				SourceFile="..\RegisterAgent\bin\Release\net472\RegisterAgent.CA.dll" />
+		<CustomAction Id="RegisterAgentAct" BinaryRef="RegisterAgentBin" DllEntry="RegisterAgentAction" Execute="immediate" Return="ignore" />
+		<Property Id="PHASE" Value="1" />
+		<Property Id="VALIDLICENSE" Value="999" />
+		<UI>
+			<Dialog Id="LicenseActivationDlg" Width="480" Height="330" Title="setup- Secops Solution CLI version !(bind.property.ProductVersion)" >
+				<Control Id="BottomLine" Type="Line" X="0" Y="294" Width="480" Height="0"
+						 ShowCondition="PHASE = 1" HideCondition="NOT PHASE = 1"/>
+				<Control Id="Title" Type="Text" X="15" Y="6" Width="450" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Bold}License Activation"
+						 ShowCondition="PHASE = 1 OR PHASE = 2" HideCondition="PHASE = 3" />
+				<Control Id="TitleRegistering" Type="Text" X="15" Y="6" Width="450" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Bold}Agent Registration"
+						 ShowCondition="PHASE = 3" HideCondition="NOT PHASE = 3"/>
+				<Control Id="Description" Type="Text" X="25" Y="20" Width="480" Height="15" Transparent="yes" NoPrefix="yes" Text="Enter your license key:"
+						 ShowCondition="PHASE = 1" HideCondition="NOT PHASE = 1" />
+				<Control Id="TextOne" Type="Text" X="25" Y="55" Width="480" Height="15" Transparent="yes" NoPrefix="yes" Text="Please enter your license key to activate the software."
+						 ShowCondition="PHASE = 1" HideCondition="NOT PHASE = 1" />
+				<Control Id="TextTwo" Type="Text" X="25" Y="75" Width="330" Height="20" Transparent="no" NoPrefix="yes" Text="License Key:"
+						 ShowCondition="PHASE = 1" HideCondition="NOT PHASE = 1"/>
+				<Control Id="TextValidatingTwo" Type="Text" X="25" Y="75" Width="480" Height ="15" Transparent="no" NoPrefix="yes" Text="Validating License Key..."
+						 ShowCondition="PHASE = 2" HideCondition="NOT PHASE = 2" ></Control>
+				<Control Id="TextRegistering" Type="Text" X="25" Y="75" Width="480" Height ="15" Transparent="no" NoPrefix="yes" Text="Registering Agent..."
+						 ShowCondition="PHASE = 3" HideCondition="NOT PHASE = 3" ></Control>
+				<Control Id="Next" Type="PushButton" X="345" Y="303" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" ShowCondition="PHASE = 1" HideCondition="NOT PHASE = 1" >
+					<Publish Property="PHASE" Value="2" Order="1" />
+					<Publish Event="DoAction" Value="VerifyLicenseAct" Order="2" />
+					<Publish Event="SpawnDialog" Value="InvalidLicensePopUp" Condition="VALIDLICENSE = 1" Order="3" ></Publish>
+					<Publish Property="PHASE" Value="3" Condition="VALIDLICENSE = 0" Order="4" ></Publish>
+					<Publish Event="DoAction" Value="RegisterAgentAct" Order="5" Condition="VALIDLICENSE = 0 AND PHASE = 3" />
+					<Publish Event="NewDialog" Value="AdditionalTasksDlg" Condition="PHASE = 4" Order="6" />
+				</Control>
+				<Control Id="Back" Type="PushButton" X="290" Y="303" Width="56" Height="17" Text="!(loc.WixUIBack)"
+						 ShowCondition="PHASE = 1" HideCondition="NOT PHASE = 1"/>
+				<Control Id="Cancel" Type="PushButton" X="410" Y="303" Width="56" Height="17" Text="!(loc.WixUICancel)"
+						 ShowCondition="PHASE = 1" HideCondition="NOT PHASE = 1">
+					<Publish Event="SpawnDialog" Value="CustomCancelDlg" />
+				</Control>
+				<Control Id="LicenseId" Type="Edit" X="25" Y="110" Width="330" Height="20" Property="LICENSEKEY"
+						 ShowCondition="PHASE = 1" HideCondition="NOT PHASE = 1" />
+				<Control Id="BannerBitmap" Type="Bitmap" X="435" Y="0" Width="44" Height="44" TabSkip="no" Text="Logo" />
+			</Dialog>
+		</UI>
+	</Fragment>
+</Wix>

@@ -1,0 +1,1 @@
+"%cd%"\SecopsService.exe --uninstall
