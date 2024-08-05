@@ -35,11 +35,9 @@ jobs:
     - name: copy required file to c:\
       run: cp -r SecopSolutions C:\\
     
-    - name: copy required file to c:\
-      run: cp -r 'Microsoft Visual Studio' C:\\
+    # - name: copy required file to c:\
+    #   run: cp -r 'Microsoft Visual Studio' C:\\
     
-
-
     - name: Restore dependencies
       run: dotnet restore "SecopSolutions.sln"
 
