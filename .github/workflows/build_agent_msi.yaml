@@ -31,12 +31,6 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x' # This ensures the correct SDK is used
-      
-    # - name: copy required file to c:\
-    #   run: cp -r SecopSolutions C:\\
-    
-    # - name: copy required file to c:\
-    #   run: cp -r 'Microsoft Visual Studio' C:\\
     
     - name: Restore dependencies
       run: dotnet restore "SecopSolutions.sln"
