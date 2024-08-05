@@ -1,0 +1,20 @@
+﻿Uninstalling assembly 'C:\SecopSolutionsMsi\SecopSolutions\SecopSolutions\Files\SecopsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\SecopSolutionsMsi\SecopSolutions\SecopSolutions\Files\SecopsService.InstallLog
+   assemblypath = C:\SecopSolutionsMsi\SecopSolutions\SecopSolutions\Files\SecopsService.exe
+Removing EventLog source SecopsService.
+Warning: The source SecopsService is not registered on the local machine.
+Service SecopsService is being removed from the system...
+An exception occurred during the uninstallation of the System.ServiceProcess.ServiceInstaller installer.
+System.ComponentModel.Win32Exception: The specified service does not exist as an installed service
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Uninstalling assembly 'C:\SecopSolutionsMsi\SecopSolutions\SecopSolutions\Files\SecopsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\SecopSolutionsMsi\SecopSolutions\SecopSolutions\Files\SecopsService.InstallLog
+   assemblypath = C:\SecopSolutionsMsi\SecopSolutions\SecopSolutions\Files\SecopsService.exe
+Removing EventLog source SecopsService.
+An exception occurred during the uninstallation of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: The source was not found, but some or all event logs could not be searched.  Inaccessible logs: Security.
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
