@@ -41,10 +41,10 @@ jobs:
 
 
     - name: Restore dependencies
-      run: dotnet restore "SecopSolutions\SecopSolutions.sln"
+      run: dotnet restore "SecopSolutions.sln"
 
     - name: Build solution
-      run: dotnet msbuild "SecopSolutions\SecopSolutions.sln" -t:Rebuild -p:Platform=x86 -p:Configuration=Release
+      run: dotnet msbuild "SecopSolutions.sln" -t:Rebuild -p:Platform=x86 -p:Configuration=Release
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
