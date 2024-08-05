@@ -1,1 +1,0 @@
-"%cd%"\SecopsService.exe --install
