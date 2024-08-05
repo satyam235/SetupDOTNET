@@ -50,4 +50,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: msi
-        path: path\to\your\msi\file.msi # Specify the path to your generated MSI file
+        path: SecopSolutions\bin\x86\Release\en-US\SecopSolutions.msi # Specify the path to your generated MSI file
