@@ -2,7 +2,7 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
 	<Fragment>
 		<UI>
-			<Dialog Id="AdditionalTasksDlg" Width="480" Height="330" Title="setup- Secops Solution CLI version !(bind.property.ProductVersion)" >
+			<Dialog Id="AdditionalTasksDlg" Width="480" Height="330" Title="Secops Solution CLI version !(bind.property.ProductVersion)" >
 				<Control Id="BottomLine" Type="Line" X="0" Y="294" Width="480" Height="0" />
 				<Control Id="Title" Type="Text" X="15" Y="6" Width="450" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Bold}Select Additional Tasks" />
 				<Control Id="Description" Type="Text" X="25" Y="20" Width="480" Height="15" Transparent="yes" NoPrefix="yes" Text="Which additional task should be performed" />

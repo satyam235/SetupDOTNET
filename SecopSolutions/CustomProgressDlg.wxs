@@ -4,7 +4,7 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
 	<Fragment>
 		<UI>
-			<Dialog Id="CustomProgressDlg" Width="480" Height="330" Title="setup- Secops Solution CLI version !(bind.property.ProductVersion)" Modeless="yes">
+			<Dialog Id="CustomProgressDlg" Width="480" Height="330" Title="Secops Solution CLI version !(bind.property.ProductVersion)" Modeless="yes">
 				<Control Id="Cancel" Type="PushButton" X="410" Y="303" Width="56" Height="17" Default="yes" Cancel="yes" Text="!(loc.WixUICancel)">
 					<Publish Event="SpawnDialog" Value="CancelDlg" />
 				</Control>

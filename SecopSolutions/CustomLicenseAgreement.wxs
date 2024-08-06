@@ -2,7 +2,7 @@
 	<Fragment>
 		<UI>
 			<TextStyle Id ="WixUI_Font_Bold" FaceName="Tahoma" Bold="yes" Size="9"/>
-			<Dialog Id="CustomLicenseAgreementDlg" Width="480" Height="330" Title="setup- Secops Solution CLI version !(bind.property.ProductVersion)">
+			<Dialog Id="CustomLicenseAgreementDlg" Width="480" Height="330" Title="Secops Solution CLI version !(bind.property.ProductVersion)">
 				<Control Id="BannerBitmap" Type="Bitmap" X="435" Y="0" Width="44" Height="44" TabSkip="no" Text="Logo" />
 				<Control Id="BannerLine" Type="Line" X="0" Y="44" Width="480" Height="0" />
 				<Control Id="BottomLine" Type="Line" X="0" Y="294" Width="480" Height="0" />

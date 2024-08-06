@@ -1,7 +1,7 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
 	<Fragment>
 		<UI>
-			<Dialog Id="CustomVerifyReadyDlg" Width="480" Height="330" Title="setup- Secops Solution CLI version !(bind.property.ProductVersion)" TrackDiskSpace="yes" >
+			<Dialog Id="CustomVerifyReadyDlg" Width="480" Height="330" Title="Secops Solution CLI version !(bind.property.ProductVersion)" TrackDiskSpace="yes" >
 				<Control Id="Install" Type="PushButton" ElevationShield="yes" X="325" Y="303" Width="80" Height="17" Default="yes" Hidden="yes" Disabled="yes" Text="!(loc.VerifyReadyDlgInstall)" ShowCondition="NOT Installed AND ALLUSERS" EnableCondition="NOT Installed" DefaultCondition="NOT Installed">
 					<Publish Event="EndDialog" Value="Return" Condition="OutOfDiskSpace &lt;&gt; 1" />
 					<Publish Event="SpawnDialog" Value="OutOfRbDiskDlg" Condition="OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST=&quot;P&quot; OR NOT PROMPTROLLBACKCOST)" />

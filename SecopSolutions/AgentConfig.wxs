@@ -10,7 +10,7 @@
 		<UI>
 			<TextStyle Id="WixUI_Font_Red" FaceName="Tahoma" Blue="0" Green="0" Red="255" Size="9"/>
 			<TextStyle Id="WixUI_Font_Green" FaceName="Tahoma" Blue="0" Green="200" Red="0" Size="9"/>
-			<Dialog Id="AgentConfigDlg" Width="480" Height="330" Title="setup- Secops Solution CLI version !(bind.property.ProductVersion)">
+			<Dialog Id="AgentConfigDlg" Width="480" Height="330" Title="Secops Solution CLI version !(bind.property.ProductVersion)">
 				<Control Id="BottomLine" Type="Line" X="0" Y="294" Width="480" Height="0" />
 				<Control Id="Next" Type="PushButton" X="345" Y="303" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" EnableCondition="(RADIOBUTTONVALUE = 1) OR ((RADIOBUTTONVALUE = 2) AND (RETURNCODE = 0))" DisableCondition="(RADIOBUTTONVALUE = 2) AND NOT (RETURNCODE = 0)" >
 					<Publish Event="NewDialog" Value="LicenseActivationDlg" />
